@@ -224,6 +224,7 @@ const (
 	enableEmailLinkSignInKey   = "enableEmailLinkSignin"
 	enableAnonymousUser        = "enableAnonymousUser"
 	multiFactorConfigTenantKey = "mfaConfig"
+	clientPermissionConfigKey  = "client"
 )
 
 // TenantToCreate represents the options used to create a new tenant.
@@ -258,6 +259,12 @@ func (t *TenantToCreate) MultiFactorConfig(multiFactorConfig MultiFactorConfig) 
 	return t.set(multiFactorConfigTenantKey, multiFactorConfig)
 }
 
+// DisableUserSignup disables user signup for the tenant.
+func (t *TenantToCreate) ClientPermissionConfig(clientPermissionConfig ClientPermissionConfig) *TenantToCreate {
+	t.ensureParams().Set(clientPermissionConfigKey, clientPermissionConfig)
+	return t
+}
+
 func (t *TenantToCreate) set(key string, value interface{}) *TenantToCreate {
 	t.ensureParams().Set(key, value)
 	return t
@@ -270,6 +277,7 @@ func (t *TenantToCreate) ensureParams() nestedMap {
 
 	return t.params
 }
+
 func (t *TenantToCreate) validate() error {
 	req := make(map[string]interface{})
 	for k, v := range t.params {
