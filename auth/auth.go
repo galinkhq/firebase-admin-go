@@ -24,7 +24,7 @@ import (
 	"strings"
 	"time"
 
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/internal"
 	"golang.org/x/oauth2"
 	"google.golang.org/api/option"
 	"google.golang.org/api/transport"
@@ -433,7 +433,6 @@ func (c *baseClient) checkRevokedOrDisabled(ctx context.Context, token *Token, e
 				authErrorCode: userDisabled,
 			},
 		}
-
 	}
 	if token.IssuedAt*1000 < user.TokensValidAfterMillis {
 		return &internal.FirebaseError{

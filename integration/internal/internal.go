@@ -23,14 +23,16 @@ import (
 	"path/filepath"
 	"strings"
 
-	firebase "firebase.google.com/go/v4"
-	"firebase.google.com/go/v4/internal"
+	firebase "github.com/galinkhq/firebase-admin-go"
+	"github.com/galinkhq/firebase-admin-go/internal"
 	"google.golang.org/api/option"
 	"google.golang.org/api/transport"
 )
 
-const certPath = "integration_cert.json"
-const apiKeyPath = "integration_apikey.txt"
+const (
+	certPath   = "integration_cert.json"
+	apiKeyPath = "integration_apikey.txt"
+)
 
 // Resource returns the absolute path to the specified test resource file.
 func Resource(name string) string {

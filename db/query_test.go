@@ -20,7 +20,7 @@ import (
 	"reflect"
 	"testing"
 
-	"firebase.google.com/go/v4/errorutils"
+	"github.com/galinkhq/firebase-admin-go/errorutils"
 )
 
 var sortableKeysResp = map[string]interface{}{
@@ -102,7 +102,8 @@ var sortableValuesResp = []struct {
 		},
 		want: []interface{}{
 			nil, false, true, 0.0, "foo", "foo",
-			map[string]interface{}{"k1": true}, map[string]interface{}{"k0": true},
+			map[string]interface{}{"k1": true},
+			map[string]interface{}{"k0": true},
 		},
 		wantKeys: []string{"k7", "k5", "k1", "k2", "k3", "k4", "k6", "k8"},
 	},

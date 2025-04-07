@@ -32,6 +32,7 @@ type ActionCodeSettings struct {
 	AndroidMinimumVersion string `json:"androidMinimumVersion,omitempty"`
 	AndroidInstallApp     bool   `json:"androidInstallApp,omitempty"`
 	DynamicLinkDomain     string `json:"dynamicLinkDomain,omitempty"`
+	LinkDomain            string `json:"linkDomain,omitempty"`
 }
 
 func (settings *ActionCodeSettings) toMap() (map[string]interface{}, error) {
@@ -78,7 +79,8 @@ func (c *baseClient) EmailVerificationLink(ctx context.Context, email string) (s
 // EmailVerificationLinkWithSettings generates the out-of-band email action link for email verification flows for the
 // specified email address, using the action code settings provided.
 func (c *baseClient) EmailVerificationLinkWithSettings(
-	ctx context.Context, email string, settings *ActionCodeSettings) (string, error) {
+	ctx context.Context, email string, settings *ActionCodeSettings,
+) (string, error) {
 	return c.generateEmailActionLink(ctx, emailVerification, email, settings)
 }
 
@@ -91,20 +93,22 @@ func (c *baseClient) PasswordResetLink(ctx context.Context, email string) (strin
 // PasswordResetLinkWithSettings generates the out-of-band email action link for password reset flows for the
 // specified email address, using the action code settings provided.
 func (c *baseClient) PasswordResetLinkWithSettings(
-	ctx context.Context, email string, settings *ActionCodeSettings) (string, error) {
+	ctx context.Context, email string, settings *ActionCodeSettings,
+) (string, error) {
 	return c.generateEmailActionLink(ctx, passwordReset, email, settings)
 }
 
 // EmailSignInLink generates the out-of-band email action link for email link sign-in flows, using the action
 // code settings provided.
 func (c *baseClient) EmailSignInLink(
-	ctx context.Context, email string, settings *ActionCodeSettings) (string, error) {
+	ctx context.Context, email string, settings *ActionCodeSettings,
+) (string, error) {
 	return c.generateEmailActionLink(ctx, emailLinkSignIn, email, settings)
 }
 
 func (c *baseClient) generateEmailActionLink(
-	ctx context.Context, linkType linkType, email string, settings *ActionCodeSettings) (string, error) {
-
+	ctx context.Context, linkType linkType, email string, settings *ActionCodeSettings,
+) (string, error) {
 	if email == "" {
 		return "", errors.New("email must not be empty")
 	}

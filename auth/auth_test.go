@@ -28,8 +28,8 @@ import (
 	"testing"
 	"time"
 
-	"firebase.google.com/go/v4/errorutils"
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/errorutils"
+	"github.com/galinkhq/firebase-admin-go/internal"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/option"
 	"google.golang.org/api/transport"
@@ -1460,8 +1460,8 @@ func checkBaseClient(client *Client, wantProjectID string) error {
 }
 
 func verifyCustomToken(
-	ctx context.Context, token string, expected map[string]interface{}, tenantID string) error {
-
+	ctx context.Context, token string, expected map[string]interface{}, tenantID string,
+) error {
 	if err := testIDTokenVerifier.verifySignature(ctx, token); err != nil {
 		return err
 	}

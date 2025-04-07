@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"strings"
 
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/internal"
 	"google.golang.org/api/iterator"
 )
 
@@ -270,6 +270,7 @@ func (t *TenantToCreate) ensureParams() nestedMap {
 
 	return t.params
 }
+
 func (t *TenantToCreate) validate() error {
 	req := make(map[string]interface{})
 	for k, v := range t.params {

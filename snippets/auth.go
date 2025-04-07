@@ -23,9 +23,9 @@ import (
 	"net/http"
 	"time"
 
-	firebase "firebase.google.com/go/v4"
-	"firebase.google.com/go/v4/auth"
-	"firebase.google.com/go/v4/auth/hash"
+	firebase "github.com/galinkhq/firebase-admin-go"
+	"github.com/galinkhq/firebase-admin-go/auth"
+	"github.com/galinkhq/firebase-admin-go/auth/hash"
 	"google.golang.org/api/iterator"
 )
 
@@ -322,7 +322,7 @@ func customClaimsVerify(ctx context.Context, client *auth.Client) {
 	claims := token.Claims
 	if admin, ok := claims["admin"]; ok {
 		if admin.(bool) {
-			//Allow access to requested admin resource.
+			// Allow access to requested admin resource.
 		}
 	}
 	// [END verify_custom_claims_golang]
@@ -1467,7 +1467,7 @@ func customClaimsVerifyTenant(ctx context.Context, tenantClient *auth.TenantClie
 	claims := token.Claims
 	if admin, ok := claims["admin"]; ok {
 		if admin.(bool) {
-			//Allow access to requested admin resource.
+			// Allow access to requested admin resource.
 		}
 	}
 	// [END verify_custom_claims_tenant]

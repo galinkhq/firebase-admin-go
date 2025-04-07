@@ -29,7 +29,7 @@ import (
 	"testing"
 	"time"
 
-	"firebase.google.com/go/v4/messaging"
+	"github.com/galinkhq/firebase-admin-go/messaging"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/option"
@@ -502,7 +502,8 @@ func TestAutoInit(t *testing.T) {
 				ProjectID:     "mock-project-id",
 				StorageBucket: "sb1-mock",
 			},
-		}, {
+		},
+		{
 			"<env=string,opts=non-empty>",
 			`{"projectId": "auto-init-project-id"}`,
 			&Config{StorageBucket: "sb1-mock"},

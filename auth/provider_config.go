@@ -23,7 +23,7 @@ import (
 	"strconv"
 	"strings"
 
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/internal"
 	"google.golang.org/api/iterator"
 )
 
@@ -885,8 +885,8 @@ func (c *baseClient) SAMLProviderConfigs(ctx context.Context, nextPageToken stri
 }
 
 func (c *baseClient) makeRequest(
-	ctx context.Context, req *internal.Request, v interface{}) (*internal.Response, error) {
-
+	ctx context.Context, req *internal.Request, v interface{},
+) (*internal.Response, error) {
 	if c.projectID == "" {
 		return nil, errors.New("project id not available")
 	}

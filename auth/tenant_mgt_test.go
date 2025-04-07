@@ -27,7 +27,7 @@ import (
 	"testing"
 	"time"
 
-	"firebase.google.com/go/v4/errorutils"
+	"github.com/galinkhq/firebase-admin-go/errorutils"
 	"google.golang.org/api/iterator"
 )
 

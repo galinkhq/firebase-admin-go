@@ -22,7 +22,7 @@ import (
 	"reflect"
 	"testing"
 
-	"firebase.google.com/go/v4/errorutils"
+	"github.com/galinkhq/firebase-admin-go/errorutils"
 )
 
 const (
@@ -31,16 +31,18 @@ const (
 	testEmail            = "user@domain.com"
 )
 
-var testActionLinkResponse = []byte(fmt.Sprintf(testActionLinkFormat, testActionLink))
-var testActionCodeSettings = &ActionCodeSettings{
-	URL:                   "https://example.dynamic.link",
-	HandleCodeInApp:       true,
-	DynamicLinkDomain:     "custom.page.link",
-	IOSBundleID:           "com.example.ios",
-	AndroidPackageName:    "com.example.android",
-	AndroidInstallApp:     true,
-	AndroidMinimumVersion: "6",
-}
+var (
+	testActionLinkResponse = []byte(fmt.Sprintf(testActionLinkFormat, testActionLink))
+	testActionCodeSettings = &ActionCodeSettings{
+		URL:                   "https://example.dynamic.link",
+		HandleCodeInApp:       true,
+		DynamicLinkDomain:     "custom.page.link",
+		IOSBundleID:           "com.example.ios",
+		AndroidPackageName:    "com.example.android",
+		AndroidInstallApp:     true,
+		AndroidMinimumVersion: "6",
+	}
+)
 var testActionCodeSettingsMap = map[string]interface{}{
 	"continueUrl":           "https://example.dynamic.link",
 	"canHandleCodeInApp":    true,
@@ -50,6 +52,7 @@ var testActionCodeSettingsMap = map[string]interface{}{
 	"androidInstallApp":     true,
 	"androidMinimumVersion": "6",
 }
+
 var invalidActionCodeSettings = []struct {
 	name     string
 	settings *ActionCodeSettings

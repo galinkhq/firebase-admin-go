@@ -30,8 +30,8 @@ import (
 	"testing"
 	"time"
 
-	"firebase.google.com/go/v4/errorutils"
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/errorutils"
+	"github.com/galinkhq/firebase-admin-go/internal"
 	"google.golang.org/api/iterator"
 )
 
@@ -235,7 +235,6 @@ func TestGetUserByProviderId(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.providerID+":"+tc.providerUID, func(t *testing.T) {
-
 			_, err := s.Client.GetUserByProviderUID(context.Background(), tc.providerID, tc.providerUID)
 			if err != nil {
 				t.Fatalf("GetUserByProviderUID() = %q", err)
@@ -789,7 +788,8 @@ var createUserCases = []struct {
 	{
 		(&UserToCreate{}).PhotoURL("http://some.url"),
 		map[string]interface{}{"photoUrl": "http://some.url"},
-	}, {
+	},
+	{
 		(&UserToCreate{}).MFASettings(MultiFactorSettings{
 			EnrolledFactors: []*MultiFactorInfo{
 				{
@@ -806,18 +806,20 @@ var createUserCases = []struct {
 				},
 			},
 		}),
-		map[string]interface{}{"mfaInfo": []*multiFactorInfoResponse{
-			{
-				PhoneInfo:   "+11234567890",
-				DisplayName: "Phone Number active",
-			},
-			{
-				PhoneInfo:   "+11234567890",
-				DisplayName: "Phone Number deprecated",
+		map[string]interface{}{
+			"mfaInfo": []*multiFactorInfoResponse{
+				{
+					PhoneInfo:   "+11234567890",
+					DisplayName: "Phone Number active",
+				},
+				{
+					PhoneInfo:   "+11234567890",
+					DisplayName: "Phone Number deprecated",
+				},
 			},
 		},
-		},
-	}, {
+	},
+	{
 		(&UserToCreate{}).MFASettings(MultiFactorSettings{
 			EnrolledFactors: []*MultiFactorInfo{
 				{
@@ -836,16 +838,17 @@ var createUserCases = []struct {
 				},
 			},
 		}),
-		map[string]interface{}{"mfaInfo": []*multiFactorInfoResponse{
-			{
-				PhoneInfo:   "+11234567890",
-				DisplayName: "number1",
+		map[string]interface{}{
+			"mfaInfo": []*multiFactorInfoResponse{
+				{
+					PhoneInfo:   "+11234567890",
+					DisplayName: "number1",
+				},
+				{
+					PhoneInfo:   "+11234567890",
+					DisplayName: "number2",
+				},
 			},
-			{
-				PhoneInfo:   "+11234567890",
-				DisplayName: "number2",
-			},
-		},
 		},
 	},
 }
@@ -1102,23 +1105,24 @@ var updateUserCases = []struct {
 				},
 			},
 		}),
-		map[string]interface{}{"mfa": multiFactorEnrollments{Enrollments: []*multiFactorInfoResponse{
-			{
-				MFAEnrollmentID: "enrolledSecondFactor1",
-				PhoneInfo:       "+11234567890",
-				DisplayName:     "Spouse's phone number",
-				EnrolledAt:      time.Now().Format("2006-01-02T15:04:05Z07:00Z"),
-			},
-			{
-				MFAEnrollmentID: "enrolledSecondFactor2",
-				DisplayName:     "Spouse's phone number",
-				PhoneInfo:       "+11234567890",
-			},
-			{
-				DisplayName: "Spouse's phone number",
-				PhoneInfo:   "+11234567890",
-			},
-		}},
+		map[string]interface{}{
+			"mfa": multiFactorEnrollments{Enrollments: []*multiFactorInfoResponse{
+				{
+					MFAEnrollmentID: "enrolledSecondFactor1",
+					PhoneInfo:       "+11234567890",
+					DisplayName:     "Spouse's phone number",
+					EnrolledAt:      time.Now().Format("2006-01-02T15:04:05Z07:00Z"),
+				},
+				{
+					MFAEnrollmentID: "enrolledSecondFactor2",
+					DisplayName:     "Spouse's phone number",
+					PhoneInfo:       "+11234567890",
+				},
+				{
+					DisplayName: "Spouse's phone number",
+					PhoneInfo:   "+11234567890",
+				},
+			}},
 		},
 	},
 	{
@@ -1134,7 +1138,8 @@ var updateUserCases = []struct {
 			"linkProviderUserInfo": &UserProvider{
 				ProviderID: "google.com",
 				UID:        "google_uid",
-			}},
+			},
+		},
 	},
 	{
 		(&UserToUpdate{}).PhoneNumber("").ProvidersToDelete([]string{"google.com"}),
@@ -1802,7 +1807,6 @@ func TestDeleteUsers(t *testing.T) {
 
 	t.Run("should succeed given an empty list", func(t *testing.T) {
 		result, err := client.DeleteUsers(context.Background(), []string{})
-
 		if err != nil {
 			t.Fatalf("DeleteUsers([]) error %v; want = nil", err)
 		}
@@ -1869,7 +1873,6 @@ func TestDeleteUsers(t *testing.T) {
 		defer s.Close()
 
 		result, err := s.Client.DeleteUsers(context.Background(), []string{"uid1", "uid2", "uid3", "uid4"})
-
 		if err != nil {
 			t.Fatalf("DeleteUsers([...]) error %v; want = nil", err)
 		}
@@ -1926,7 +1929,8 @@ func TestMakeExportedUser(t *testing.T) {
 				ProviderID:  "phone",
 				PhoneNumber: "+1234567890",
 				UID:         "testuid",
-			}},
+			},
+		},
 		MFAInfo: []*multiFactorInfoResponse{
 			{
 				PhoneInfo:       "+1234567890",

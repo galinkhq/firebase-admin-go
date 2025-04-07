@@ -6,11 +6,11 @@
 
 ## Table of Contents
 
- * [Overview](#overview)
- * [Installation](#installation)
- * [Contributing](#contributing)
- * [Documentation](#documentation)
- * [License and Terms](#license-and-terms)
+- [Overview](#overview)
+- [Installation](#installation)
+- [Contributing](#contributing)
+- [Documentation](#documentation)
+- [License and Terms](#license-and-terms)
 
 ## Overview
 
@@ -23,17 +23,16 @@ Firebase custom authentication support.
 For more information, visit the
 [Firebase Admin SDK setup guide](https://firebase.google.com/docs/admin/setup/).
 
-
 ## Installation
 
 The Firebase Admin Go SDK can be installed using the `go get` utility:
 
 ```
 # Install the latest version:
-go get firebase.google.com/go/v4@latest
+go get github.com/galinkhq/firebase-admin-go@latest
 
 # Or install a specific version:
-go get firebase.google.com/go/v4@4.x.x
+go get github.com/galinkhq/firebase-admin-go@4.x.x
 ```
 
 ## Contributing
@@ -51,14 +50,13 @@ tests the code on Go v1.21 through v1.23.
 
 ## Documentation
 
-* [Setup Guide](https://firebase.google.com/docs/admin/setup/)
-* [Authentication Guide](https://firebase.google.com/docs/auth/admin/)
-* [Cloud Firestore](https://firebase.google.com/docs/firestore/)
-* [Cloud Messaging Guide](https://firebase.google.com/docs/cloud-messaging/admin/)
-* [Storage Guide](https://firebase.google.com/docs/storage/admin/start)
-* [API Reference](https://godoc.org/firebase.google.com/go)
-* [Release Notes](https://firebase.google.com/support/release-notes/admin/go)
-
+- [Setup Guide](https://firebase.google.com/docs/admin/setup/)
+- [Authentication Guide](https://firebase.google.com/docs/auth/admin/)
+- [Cloud Firestore](https://firebase.google.com/docs/firestore/)
+- [Cloud Messaging Guide](https://firebase.google.com/docs/cloud-messaging/admin/)
+- [Storage Guide](https://firebase.google.com/docs/storage/admin/start)
+- [API Reference](https://godoc.org/firebase.google.com/go)
+- [Release Notes](https://firebase.google.com/support/release-notes/admin/go)
 
 ## License and Terms
 

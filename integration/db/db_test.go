@@ -28,22 +28,28 @@ import (
 	"reflect"
 	"testing"
 
-	firebase "firebase.google.com/go/v4"
-	"firebase.google.com/go/v4/db"
-	"firebase.google.com/go/v4/errorutils"
-	"firebase.google.com/go/v4/integration/internal"
+	firebase "github.com/galinkhq/firebase-admin-go"
+	"github.com/galinkhq/firebase-admin-go/db"
+	"github.com/galinkhq/firebase-admin-go/errorutils"
+	"github.com/galinkhq/firebase-admin-go/integration/internal"
 )
 
-var client *db.Client
-var aoClient *db.Client
-var guestClient *db.Client
+var (
+	client      *db.Client
+	aoClient    *db.Client
+	guestClient *db.Client
+)
 
-var ref *db.Ref
-var users *db.Ref
-var dinos *db.Ref
+var (
+	ref   *db.Ref
+	users *db.Ref
+	dinos *db.Ref
+)
 
-var testData map[string]interface{}
-var parsedTestData map[string]Dinosaur
+var (
+	testData       map[string]interface{}
+	parsedTestData map[string]Dinosaur
+)
 
 const permDenied = "http error status: 401; reason: Permission denied"
 

@@ -29,11 +29,13 @@ import (
 	"net/textproto"
 	"sync"
 
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/internal"
 )
 
-const maxMessages = 500
-const multipartBoundary = "__END_OF_PART__"
+const (
+	maxMessages       = 500
+	multipartBoundary = "__END_OF_PART__"
+)
 
 // MulticastMessage represents a message that can be sent to multiple devices via Firebase Cloud
 // Messaging (FCM).
@@ -293,8 +295,8 @@ func toMessages(message *MulticastMessage) ([]*Message, error) {
 }
 
 func (c *fcmClient) sendBatch(
-	ctx context.Context, messages []*Message, dryRun bool) (*BatchResponse, error) {
-
+	ctx context.Context, messages []*Message, dryRun bool,
+) (*BatchResponse, error) {
 	if len(messages) == 0 {
 		return nil, errors.New("messages must not be nil or empty")
 	}

@@ -26,7 +26,7 @@ import (
 	"strings"
 	"time"
 
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/internal"
 )
 
 const (
@@ -1195,7 +1195,8 @@ func (c *baseClient) createUser(ctx context.Context, user *UserToCreate) (string
 
 // UpdateUser updates an existing user account with the specified properties.
 func (c *baseClient) UpdateUser(
-	ctx context.Context, uid string, user *UserToUpdate) (ur *UserRecord, err error) {
+	ctx context.Context, uid string, user *UserToUpdate,
+) (ur *UserRecord, err error) {
 	if err := c.updateUser(ctx, uid, user); err != nil {
 		return nil, err
 	}
@@ -1356,7 +1357,6 @@ func (c *baseClient) createSessionCookie(
 	idToken string,
 	expiresIn time.Duration,
 ) (string, error) {
-
 	if idToken == "" {
 		return "", errors.New("id token must not be empty")
 	}
@@ -1381,7 +1381,6 @@ func (c *baseClient) post(
 	path string,
 	payload, resp interface{},
 ) (*internal.Response, error) {
-
 	url, err := c.makeUserMgtURL(path)
 	if err != nil {
 		return nil, err

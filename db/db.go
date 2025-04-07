@@ -25,16 +25,18 @@ import (
 	"runtime"
 	"strings"
 
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/internal"
 	"golang.org/x/oauth2"
 	"google.golang.org/api/option"
 )
 
-const userAgentFormat = "Firebase/HTTP/%s/%s/AdminGo"
-const invalidChars = "[].#$"
-const authVarOverride = "auth_variable_override"
-const emulatorDatabaseEnvVar = "FIREBASE_DATABASE_EMULATOR_HOST"
-const emulatorNamespaceParam = "ns"
+const (
+	userAgentFormat        = "Firebase/HTTP/%s/%s/AdminGo"
+	invalidChars           = "[].#$"
+	authVarOverride        = "auth_variable_override"
+	emulatorDatabaseEnvVar = "FIREBASE_DATABASE_EMULATOR_HOST"
+	emulatorNamespaceParam = "ns"
+)
 
 // errInvalidURL tells whether the given database url is invalid
 // It is invalid if it is malformed, or not of the format "host:port"
@@ -117,7 +119,8 @@ func (c *Client) NewRef(path string) *Ref {
 }
 
 func (c *Client) sendAndUnmarshal(
-	ctx context.Context, req *internal.Request, v interface{}) (*internal.Response, error) {
+	ctx context.Context, req *internal.Request, v interface{},
+) (*internal.Response, error) {
 	if strings.ContainsAny(req.URL, invalidChars) {
 		return nil, fmt.Errorf("invalid path with illegal characters: %q", req.URL)
 	}

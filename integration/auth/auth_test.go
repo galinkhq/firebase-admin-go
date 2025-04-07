@@ -32,10 +32,10 @@ import (
 	"testing"
 	"time"
 
-	firebase "firebase.google.com/go/v4"
-	"firebase.google.com/go/v4/auth"
-	"firebase.google.com/go/v4/auth/hash"
-	"firebase.google.com/go/v4/integration/internal"
+	firebase "github.com/galinkhq/firebase-admin-go"
+	"github.com/galinkhq/firebase-admin-go/auth"
+	"github.com/galinkhq/firebase-admin-go/auth/hash"
+	"github.com/galinkhq/firebase-admin-go/integration/internal"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/option"
 )
@@ -45,8 +45,10 @@ const (
 	verifyPasswordURL    = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=%s"
 )
 
-var client *auth.Client
-var apiKey string
+var (
+	client *auth.Client
+	apiKey string
+)
 
 func TestMain(m *testing.M) {
 	flag.Parse()
@@ -369,7 +371,6 @@ func TestImportUserPasswordSaltOrder(t *testing.T) {
 			t.Errorf("ID Token = empty; want = non-empty")
 		}
 	}
-
 }
 
 func postRequest(url string, req []byte) ([]byte, error) {

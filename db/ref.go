@@ -21,7 +21,7 @@ import (
 	"net/http"
 	"strings"
 
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/internal"
 )
 
 // txnRetires is the maximum number of times a transaction is retried before giving up. Transaction
@@ -293,7 +293,8 @@ func (r *Ref) Delete(ctx context.Context) error {
 }
 
 func (r *Ref) sendAndUnmarshal(
-	ctx context.Context, req *internal.Request, v interface{}) (*internal.Response, error) {
+	ctx context.Context, req *internal.Request, v interface{},
+) (*internal.Response, error) {
 	req.URL = r.Path
 	return r.client.sendAndUnmarshal(ctx, req, v)
 }

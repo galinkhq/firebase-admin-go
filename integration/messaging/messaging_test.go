@@ -24,8 +24,8 @@ import (
 	"regexp"
 	"testing"
 
-	"firebase.google.com/go/v4/integration/internal"
-	"firebase.google.com/go/v4/messaging"
+	"github.com/galinkhq/firebase-admin-go/integration/internal"
+	"github.com/galinkhq/firebase-admin-go/messaging"
 )
 
 // The registration token has the proper format, but is not valid (i.e. expired). The intention of
@@ -34,8 +34,10 @@ import (
 const testRegistrationToken = "fGw0qy4TGgk:APA91bGtWGjuhp4WRhHXgbabIYp1jxEKI08ofj_v1bKhWAGJQ4e3a" +
 	"rRCWzeTfHaLz83mBnDh0aPWB1AykXAVUUGl2h1wT4XI6XazWpvY7RBUSYfoxtqSWGIm2nvWh2BOP1YG501SsRoE"
 
-var messageIDPattern = regexp.MustCompile("^projects/.*/messages/.*$")
-var client *messaging.Client
+var (
+	messageIDPattern = regexp.MustCompile("^projects/.*/messages/.*$")
+	client           *messaging.Client
+)
 
 // Enable API before testing
 // https://console.developers.google.com/apis/library/fcm.googleapis.com

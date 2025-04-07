@@ -27,7 +27,7 @@ import (
 	"strings"
 	"time"
 
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/internal"
 	"google.golang.org/api/transport"
 )
 
@@ -51,9 +51,7 @@ const (
 	rfc3339Zulu = "2006-01-02T15:04:05.000000000Z"
 )
 
-var (
-	topicNamePattern = regexp.MustCompile("^(/topics/)?(private/)?[a-zA-Z0-9-_.~%]+$")
-)
+var topicNamePattern = regexp.MustCompile("^(/topics/)?(private/)?[a-zA-Z0-9-_.~%]+$")
 
 // Message to be sent via Firebase Cloud Messaging.
 //
@@ -593,7 +591,7 @@ func (n *WebpushNotification) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON unmarshals a JSON string into a WebpushNotification (for internal use only).
 func (n *WebpushNotification) UnmarshalJSON(b []byte) error {
 	type webpushNotificationInternal WebpushNotification
-	var temp = (*webpushNotificationInternal)(n)
+	temp := (*webpushNotificationInternal)(n)
 	if err := json.Unmarshal(b, temp); err != nil {
 		return err
 	}
@@ -654,7 +652,7 @@ func (p *APNSPayload) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON unmarshals a JSON string into an APNSPayload (for internal use only).
 func (p *APNSPayload) UnmarshalJSON(b []byte) error {
 	type apnsPayloadInternal APNSPayload
-	var temp = (*apnsPayloadInternal)(p)
+	temp := (*apnsPayloadInternal)(p)
 	if err := json.Unmarshal(b, temp); err != nil {
 		return err
 	}

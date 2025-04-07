@@ -19,8 +19,8 @@ import (
 	"reflect"
 	"testing"
 
-	"firebase.google.com/go/v4/auth"
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/auth"
+	"github.com/galinkhq/firebase-admin-go/internal"
 )
 
 var (

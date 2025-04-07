@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"firebase.google.com/go/v4/internal"
+	"github.com/galinkhq/firebase-admin-go/internal"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/go-cmp/cmp"
 )
@@ -62,7 +62,8 @@ func TestVerifyTokenHasValidClaims(t *testing.T) {
 					Subject:   "12345678:app:ID",
 					ExpiresAt: jwt.NewNumericDate(mockTime.Add(time.Hour)),
 					IssuedAt:  jwt.NewNumericDate(mockTime),
-				}},
+				},
+			},
 			nil,
 			&DecodedAppCheckToken{
 				Issuer:    "https://firebaseappcheck.googleapis.com/12345678",
@@ -83,7 +84,8 @@ func TestVerifyTokenHasValidClaims(t *testing.T) {
 					IssuedAt:  jwt.NewNumericDate(mockTime),
 					// A field our AppCheckToken does not use.
 					NotBefore: jwt.NewNumericDate(mockTime.Add(-1 * time.Hour)),
-				}},
+				},
+			},
 			nil,
 			&DecodedAppCheckToken{
 				Issuer:    "https://firebaseappcheck.googleapis.com/12345678",
@@ -104,7 +106,8 @@ func TestVerifyTokenHasValidClaims(t *testing.T) {
 					Subject:   "12345678:app:ID",
 					ExpiresAt: jwt.NewNumericDate(mockTime.Add(time.Hour)),
 					IssuedAt:  jwt.NewNumericDate(mockTime),
-				}},
+				},
+			},
 			ErrTokenAudience,
 			nil,
 		}, {
@@ -115,7 +118,8 @@ func TestVerifyTokenHasValidClaims(t *testing.T) {
 					Subject:   "12345678:app:ID",
 					ExpiresAt: jwt.NewNumericDate(mockTime.Add(time.Hour)),
 					IssuedAt:  jwt.NewNumericDate(mockTime),
-				}},
+				},
+			},
 			ErrTokenIssuer,
 			nil,
 		}, {
@@ -126,7 +130,8 @@ func TestVerifyTokenHasValidClaims(t *testing.T) {
 					Subject:   "",
 					ExpiresAt: jwt.NewNumericDate(mockTime.Add(time.Hour)),
 					IssuedAt:  jwt.NewNumericDate(mockTime),
-				}},
+				},
+			},
 			ErrTokenSubject,
 			nil,
 		}, {
@@ -136,7 +141,8 @@ func TestVerifyTokenHasValidClaims(t *testing.T) {
 					Issuer:    "https://firebaseappcheck.googleapis.com/12345678",
 					ExpiresAt: jwt.NewNumericDate(mockTime.Add(time.Hour)),
 					IssuedAt:  jwt.NewNumericDate(mockTime),
-				}},
+				},
+			},
 			ErrTokenSubject,
 			nil,
 		},

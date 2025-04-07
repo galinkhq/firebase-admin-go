@@ -24,13 +24,15 @@ import (
 	"testing"
 
 	gcs "cloud.google.com/go/storage"
-	firebase "firebase.google.com/go/v4"
-	"firebase.google.com/go/v4/integration/internal"
-	"firebase.google.com/go/v4/storage"
+	firebase "github.com/galinkhq/firebase-admin-go"
+	"github.com/galinkhq/firebase-admin-go/integration/internal"
+	"github.com/galinkhq/firebase-admin-go/storage"
 )
 
-var ctx context.Context
-var client *storage.Client
+var (
+	ctx    context.Context
+	client *storage.Client
+)
 
 func TestMain(m *testing.M) {
 	flag.Parse()

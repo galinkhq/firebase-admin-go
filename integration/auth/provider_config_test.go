@@ -21,7 +21,7 @@ import (
 	"reflect"
 	"testing"
 
-	"firebase.google.com/go/v4/auth"
+	"github.com/galinkhq/firebase-admin-go/auth"
 	"google.golang.org/api/iterator"
 )
 
@@ -345,7 +345,7 @@ func randomOIDCProviderID() string {
 }
 
 func randomCharacterString() string {
-	var letters = []rune("abcdefghijklmnopqrstuvwxyz")
+	letters := []rune("abcdefghijklmnopqrstuvwxyz")
 	b := make([]rune, 10)
 	for i := range b {
 		b[i] = letters[seededRand.Intn(len(letters))]
