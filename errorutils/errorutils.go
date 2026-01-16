@@ -143,3 +143,11 @@ func HTTPResponse(err error) *http.Response {
 
 	return nil
 }
+
+// NewNotFoundError creates a not found error for testing purposes.
+func NewNotFoundError(message string) error {
+	return &internal.FirebaseError{
+		ErrorCode: internal.NotFound,
+		String:    message,
+	}
+}
