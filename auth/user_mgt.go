@@ -585,6 +585,15 @@ func IsUIDAlreadyExists(err error) bool {
 	return hasAuthErrorCode(err, uidAlreadyExists)
 }
 
+// NewUIDAlreadyExistsError creates a duplicate uid error for testing purposes.
+func NewUIDAlreadyExistsError(message string) error {
+	return &internal.FirebaseError{
+		ErrorCode: internal.AlreadyExists,
+		String:    message,
+		Ext:       map[string]interface{}{authErrorCode: uidAlreadyExists},
+	}
+}
+
 // IsUnauthorizedContinueURI checks if the given error was due to an unauthorized continue URI domain.
 func IsUnauthorizedContinueURI(err error) bool {
 	return hasAuthErrorCode(err, unauthorizedContinueURI)
